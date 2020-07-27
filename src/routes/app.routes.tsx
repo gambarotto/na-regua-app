@@ -11,6 +11,7 @@ import DetailScreen from '../screens/DetailScreen';
 
 import { AppProvider } from '../contexts/barbershops';
 import { CustumerProvider } from '../contexts/custumer';
+import { AppointmentProvider } from '../contexts/appointment';
 
 import { colors } from '../utils/styles';
 
@@ -83,30 +84,32 @@ function TabRoutes() {
 const AppRoutes: React.FC = () => (
   <AppProvider>
     <CustumerProvider>
-      <AppStack.Navigator initialRouteName="Main">
-        <AppStack.Screen
-          name="Detail"
-          component={DetailScreen}
-          options={{
-            title: 'Detalhes',
-            headerStyle: {
-              backgroundColor: '#222',
-            },
-            headerTitleAlign: 'center',
-            headerTintColor: colors.secondaryColor,
-            headerTitleStyle: {
-              fontFamily: 'Anton-Regular',
-            },
-          }}
-        />
-        <AppStack.Screen
-          name="Main"
-          component={TabRoutes}
-          options={{
-            headerShown: false,
-          }}
-        />
-      </AppStack.Navigator>
+      <AppointmentProvider>
+        <AppStack.Navigator initialRouteName="Main">
+          <AppStack.Screen
+            name="Detail"
+            component={DetailScreen}
+            options={{
+              title: 'Detalhes',
+              headerStyle: {
+                backgroundColor: '#222',
+              },
+              headerTitleAlign: 'center',
+              headerTintColor: colors.secondaryColor,
+              headerTitleStyle: {
+                fontFamily: 'Anton-Regular',
+              },
+            }}
+          />
+          <AppStack.Screen
+            name="Main"
+            component={TabRoutes}
+            options={{
+              headerShown: false,
+            }}
+          />
+        </AppStack.Navigator>
+      </AppointmentProvider>
     </CustumerProvider>
   </AppProvider>
 );

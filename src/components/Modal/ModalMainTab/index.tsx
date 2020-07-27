@@ -31,9 +31,13 @@ const ModalMainTab: React.FC<{
 
   useEffect(() => {
     async function loadBarbers() {
-      const response = await api.get(`/stores/${barbershop.id}/employees`);
-      if (response) {
-        setBarbers(response.data);
+      try {
+        const response = await api.get(`/stores/${barbershop.id}/employees`);
+        if (response) {
+          setBarbers(response.data);
+        }
+      } catch (error) {
+        console.log('Error ModalMainTab :: loadBarbers => ', error);
       }
     }
     loadBarbers();

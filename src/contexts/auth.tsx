@@ -9,7 +9,7 @@ interface IUser {
 }
 interface IAuthContextData {
   signed: boolean;
-  user: IUser | null;
+  user: IUser;
   signIn(data: ILogin): Promise<void>;
   signOut(): void;
   loading: boolean;
@@ -21,7 +21,7 @@ interface ILogin {
 const AuthContext = createContext<IAuthContextData>({} as IAuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<IUser | null>(null);
+  const [user, setUser] = useState<IUser>({} as IUser);
   const [loading, setLoading] = useState(true);
 
   async function signIn(data: ILogin) {
@@ -46,13 +46,20 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     async function loadUserData() {
-      const asyncUser = await AsyncStorage.getItem('@RNUser');
-      const asyncToken = await AsyncStorage.getItem('@RNToken');
-      if (asyncUser && asyncToken) {
-        setUser(JSON.parse(asyncUser));
-        api.defaults.headers.Authorization = `Bearer ${asyncToken}`;
+      try {
+        const asyncUser = await AsyncStorage.getItem('@RNUser');
+        const asyncToken = await AsyncStorage.getItem('@RNToken');
+        if (asyncUser && asyncToken) {
+          setUser(JSON.parse(asyncUser));
+          api.defaults.headers.Authorization = `Bearer ${asyncToken}`;
+        }
+        setLoading(false);
+      } catch (error) {
+        console.log(
+          'Error on loadUserData :: AuthContext(auth.tsx) => ',
+          error
+        );
       }
-      setLoading(false);
     }
     loadUserData();
   }, []);

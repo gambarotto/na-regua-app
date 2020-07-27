@@ -28,6 +28,12 @@ export interface IAppointment {
   employee: IEmployeeAppointment;
   store: IStoreAppointment;
 }
+export interface ISetAppointment {
+  date: string;
+  employee_id: number;
+  custumer_id: number;
+}
+
 export interface IAddress {
   street: string;
   number: string;

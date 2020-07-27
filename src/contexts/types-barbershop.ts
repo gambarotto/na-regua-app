@@ -44,5 +44,5 @@ export interface IService {
   price: string;
 }
 export interface IAppData {
-  barbershop: IBarbershop[];
+  barbershop: IBarbershop;
 }

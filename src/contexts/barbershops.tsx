@@ -5,12 +5,20 @@ import { IAppData, IBarbershop } from './types-barbershop';
 const AppContext = createContext<IAppData>({} as IAppData);
 
 export const AppProvider: React.FC = ({ children }) => {
-  const [barbershop, setBarbershop] = useState<IBarbershop[]>([]);
+  const [barbershop, setBarbershop] = useState<IBarbershop>({} as IBarbershop);
 
   useEffect(() => {
     async function loadBarbers() {
-      const response = await api.get('/stores');
-      setBarbershop(response.data);
+      try {
+        const response = await api.get('/stores');
+        setBarbershop(response.data[0]);
+        console.log(JSON.stringify(response.data[0]));
+      } catch (error) {
+        console.log(
+          'Error on loadBarbers :: AppContext(barbershops.tsx) => ',
+          error
+        );
+      }
     }
     loadBarbers();
   }, []);

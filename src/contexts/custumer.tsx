@@ -29,36 +29,42 @@ export const CustumerProvider: React.FC = ({ children }) => {
   const [appointments, setAppointments] = useState<IAppointment[]>([]);
 
   useEffect(() => {
-    async function loadFavoritiesData() {
-      if (user) {
-        const response = await api.get(`/favorites/custumers/${user.id}`);
-        if (response) {
-          setFavorities(response.data);
-        }
-      }
-    }
-    loadFavoritiesData();
-  }, [user]);
-  useEffect(() => {
     async function loadCouponsData() {
-      if (user) {
-        const response = await api.get(`/coupons/custumers/${user.id}`);
-        if (response) {
-          setCoupons(response.data);
+      try {
+        if (user) {
+          const response = await api.get(`/coupons/custumers/${user.id}`);
+          if (response) {
+            setCoupons(response.data);
+          }
         }
+      } catch (error) {
+        console.log(
+          'Error on loadCouponsData :: CustumerContext(custumer.tsx) => ',
+          error
+        );
       }
     }
     loadCouponsData();
   }, [user]);
   useEffect(() => {
     async function loadAppointmentsData() {
-      if (user) {
-        const response = await api.get(`/appointments/custumers/${user.id}`);
-        setAppointments(response.data);
+      try {
+        if (user) {
+          const response = await api.get(`/appointments/custumers/${user.id}`);
+          if (response) {
+            setAppointments(response.data);
+          }
+        }
+      } catch (error) {
+        console.log(
+          'Error on loadAppointmentsData :: CustumerContext(custumer.tsx) => ',
+          error
+        );
       }
     }
     loadAppointmentsData();
   }, [user]);
+
   return (
     <CustumerContext.Provider
       value={{

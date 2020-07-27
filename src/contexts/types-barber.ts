@@ -11,10 +11,17 @@ export interface IBarber {
     url: string;
   };
 }
+export interface IDaysAvailables {
+  dayNameWeek: string;
+  dayNumber: string;
+  month: string;
+  timestamp: number | null;
+}
 export interface IAvailables {
   time: string;
   value: string;
-  available: boolean;
+  available: boolean | null;
+  dayOff?: boolean;
 }
 export interface ISchedule {
   id: number;

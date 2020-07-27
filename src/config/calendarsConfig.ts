@@ -26,7 +26,32 @@ export const themeCalendar = {
   textMonthFontSize: 16,
   textDayHeaderFontSize: 14,
 };
-
+export const themeCalendarModal = {
+  backgroundColor: 'white',
+  calendarBackground: 'white',
+  textSectionTitleColor: colors.secondaryColor,
+  textSectionTitleDisabledColor: '#d9e1e8',
+  selectedDayBackgroundColor: colors.orange,
+  selectedDayTextColor: colors.primaryColor,
+  todayTextColor: colors.blue,
+  dayTextColor: '#d9e1e8',
+  textDisabledColor: '#d9e1e8',
+  dotColor: '#00adf5',
+  selectedDotColor: '#ffffff',
+  arrowColor: colors.orange,
+  disabledArrowColor: '#d9e1e8',
+  monthTextColor: colors.orange,
+  indicatorColor: 'blue',
+  textDayFontFamily: 'Anton-Regular',
+  textMonthFontFamily: 'Anton-Regular',
+  textDayHeaderFontFamily: 'Anton-Regular',
+  // textDayFontWeight: '300',
+  // textMonthFontWeight: 'bold',
+  // textDayHeaderFontWeight: '300',
+  textDayFontSize: 16,
+  textMonthFontSize: 16,
+  textDayHeaderFontSize: 14,
+};
 export const localesPt = {
   monthNames: [
     'Janeiro',

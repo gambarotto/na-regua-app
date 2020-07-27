@@ -15,30 +15,30 @@ interface IBundleData {
 
 const TicketsScreen: React.FC = () => {
   const { user } = useAuth();
-  const { coupons, favorites, setCoupons, setFavorites } = useCustumer();
+  const { coupons, favorites, setCoupons } = useCustumer();
   const [data, setData] = useState<IBundleData[]>([]);
   const [isRefresh, setIsRefresh] = useState(false);
 
-  const parseDataApi = useCallback(() => {
-    console.log('efc');
+  // const parseDataApi = useCallback(() => {
+  //   console.log('efc');
 
-    const bundle = favorities.map(favorite => {
-      const couponFiltered = coupons.filter(
-        coupon => coupon.store_id === favorite.store.id
-      );
-      return {
-        barbershop: favorite.store,
-        coupons: couponFiltered[0],
-      };
-    });
-    setData(bundle);
-  }, [coupons, favorites]);
+  //   const bundle = favorities.map(favorite => {
+  //     const couponFiltered = coupons.filter(
+  //       coupon => coupon.store_id === favorite.store.id
+  //     );
+  //     return {
+  //       barbershop: favorite.store,
+  //       coupons: couponFiltered[0],
+  //     };
+  //   });
+  //   setData(bundle);
+  // }, [coupons, favorites]);
 
-  useEffect(() => {
-    if (data.length === 0) {
-      parseDataApi();
-    }
-  }, [favorites, coupons, data]);
+  // useEffect(() => {
+  //   if (data.length === 0) {
+  //     parseDataApi();
+  //   }
+  // }, [favorites, coupons, data]);
 
   async function pullToRefresh() {
     setIsRefresh(true);

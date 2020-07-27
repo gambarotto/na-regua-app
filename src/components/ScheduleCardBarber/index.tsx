@@ -27,7 +27,7 @@ const ScheduleCardBarber: React.FC<{ item: IAppointment }> = ({ item }) => {
       );
       console.log(response.data);
     } catch (error) {
-      console.log(error);
+      console.log('Error ScheduleCardBarber :: handle cancel => ', error);
     }
   }
 
